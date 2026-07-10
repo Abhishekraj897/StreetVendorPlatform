@@ -1,36 +1,16 @@
+import { useEffect, useState } from "react";
 import VendorCard from "./VendorCard";
 
-const vendors = [
-  {
-    id: 1,
-    name: "Sharma Momos",
-    category: "Momos",
-    location: "Patna",
-    rating: "4.8",
-    image:
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800",
-  },
-  {
-    id: 2,
-    name: "Banaras Chaat",
-    category: "Chaat",
-    location: "Varanasi",
-    rating: "4.7",
-    image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800",
-  },
-  {
-    id: 3,
-    name: "Kolkata Rolls",
-    category: "Rolls",
-    location: "Kolkata",
-    rating: "4.9",
-    image:
-      "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800",
-  },
-];
-
 function FeaturedVendors() {
+  const [vendors, setVendors] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/vendors")
+      .then((res) => res.json())
+      .then((data) => setVendors(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-6">
