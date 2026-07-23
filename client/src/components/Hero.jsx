@@ -1,42 +1,90 @@
+import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
+
 function Hero() {
   return (
-    <section className="bg-gradient-to-r from-orange-50 to-orange-100 min-h-[85vh] flex items-center">
+    <section
+      className="relative min-h-screen lg:min-h-[90vh] bg-cover bg-center flex items-center"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600')",
+      }}
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="max-w-3xl">
 
-        <div>
-          <h1 className="text-6xl font-bold leading-tight text-gray-800">
-            Discover the Best
-            <span className="text-orange-500"> Street Food </span>
-            Around You
+          <span className="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            🍽️ India's Street Food Discovery Platform
+          </span>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+            Discover
+            <span className="text-orange-400"> Amazing </span>
+            Street Food
+            <br />
+            Near You
           </h1>
 
-          <p className="mt-6 text-lg text-gray-600">
-            Search nearby vendors, explore delicious local food,
-            and support small businesses in your city.
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-200 leading-7 md:leading-8 max-w-2xl">
+            Find the best local vendors, explore authentic street food,
+            support small businesses, and let AI recommend your next meal.
           </p>
 
-          <div className="mt-8 flex gap-4">
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition">
-              Explore Vendors
-            </button>
+          <div className="flex flex-col sm:flex-row gap-4 mt-10">
 
-            <button className="border-2 border-orange-500 text-orange-500 px-6 py-3 rounded-lg hover:bg-orange-500 hover:text-white transition">
-              Learn More
-            </button>
+            <Link to="/" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 transition px-8 py-4 rounded-xl text-white font-semibold flex items-center justify-center gap-2 shadow-xl">
+                Explore Vendors
+                <FiArrowRight />
+              </button>
+            </Link>
+
+            <Link to="/ai-assistant" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black transition px-8 py-4 rounded-xl font-semibold">
+                🤖 Try AI Assistant
+              </button>
+            </Link>
+
           </div>
-        </div>
 
-        <div className="flex justify-center">
-          <img
-            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800"
-            alt="Street Food"
-            className="rounded-3xl shadow-2xl"
-          />
-        </div>
+          {/* Stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 max-w-xl">
 
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-orange-400">
+                500+
+              </h2>
+              <p className="text-gray-300">
+                Vendors
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-orange-400">
+                50+
+              </h2>
+              <p className="text-gray-300">
+                Categories
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-orange-400">
+                AI
+              </h2>
+              <p className="text-gray-300">
+                Recommendations
+              </p>
+            </div>
+
+          </div>
+
+        </div>
       </div>
-
     </section>
   );
 }
