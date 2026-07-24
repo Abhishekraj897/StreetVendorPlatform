@@ -28,12 +28,7 @@ function Home() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-
-      <FeaturedVendors
-        search={search}
-        selectedCategory={selectedCategory}
-      />
-
+      
       <FeaturedVendors
         ref={vendorsRef}
         search={search}
