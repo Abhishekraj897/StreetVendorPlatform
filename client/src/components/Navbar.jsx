@@ -34,7 +34,7 @@ function Navbar() {
           className="flex items-center gap-2"
         >
           <div className="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center text-xl shadow-md">
-            🌮
+            🍜
           </div>
 
           <div>
@@ -187,57 +187,153 @@ function Navbar() {
         </button>
       </div>
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t shadow-lg">
+        <div className="lg:hidden bg-white border-t shadow-xl">
+          <div className="flex flex-col p-6">
 
-          <div className="flex flex-col p-6 space-y-5">
+            {/* User Info */}
+            {user && (
+              <div className="flex items-center gap-3 border-b pb-5 mb-5">
+                <div className="w-11 h-11 rounded-full bg-orange-500 text-white flex items-center justify-center text-lg">
+                  <FiUser />
+                </div>
 
-            <NavLink to="/" onClick={() => setMenuOpen(false)}>
+                <div>
+                  <p className="font-semibold text-gray-800">{user.name}</p>
+                  <p className="text-sm text-gray-500">
+                    Welcome Back 👋
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Home */}
+            <NavLink
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
+                  ? "bg-orange-100 text-orange-500 font-semibold"
+                  : "hover:bg-orange-50"
+                }`
+              }
+            >
+              <FiHome />
               Home
             </NavLink>
 
-            <NavLink to="/add-vendor" onClick={() => setMenuOpen(false)}>
+            {/* Add Vendor */}
+            <NavLink
+              to="/add-vendor"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
+                  ? "bg-orange-100 text-orange-500 font-semibold"
+                  : "hover:bg-orange-50"
+                }`
+              }
+            >
+              <FiPlusCircle />
               Add Vendor
             </NavLink>
 
-            <NavLink to="/my-vendors" onClick={() => setMenuOpen(false)}>
+            {/* My Vendors */}
+            <NavLink
+              to="/my-vendors"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
+                  ? "bg-orange-100 text-orange-500 font-semibold"
+                  : "hover:bg-orange-50"
+                }`
+              }
+            >
+              <FiGrid />
               My Vendors
             </NavLink>
 
-            <NavLink to="/favorites" onClick={() => setMenuOpen(false)}>
+            {/* Favorites */}
+            <NavLink
+              to="/favorites"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
+                  ? "bg-orange-100 text-orange-500 font-semibold"
+                  : "hover:bg-orange-50"
+                }`
+              }
+            >
+              <FiHeart />
               Favorites
             </NavLink>
 
-            <NavLink to="/dashboard" onClick={() => setMenuOpen(false)}>
+            {/* Dashboard */}
+            <NavLink
+              to="/dashboard"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
+                  ? "bg-orange-100 text-orange-500 font-semibold"
+                  : "hover:bg-orange-50"
+                }`
+              }
+            >
+              <FiGrid />
               Dashboard
             </NavLink>
 
-            <NavLink to="/ai-assistant" onClick={() => setMenuOpen(false)}>
+            {/* AI Assistant */}
+            <NavLink
+              to="/ai-assistant"
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
+                  ? "bg-orange-100 text-orange-500 font-semibold"
+                  : "hover:bg-orange-50"
+                }`
+              }
+            >
+              <FaRobot />
               AI Assistant
             </NavLink>
 
-            {user ? (
-              <button
-                onClick={() => {
-  setMenuOpen(false);
-  handleLogout();
-}}
-                className="bg-red-500 text-white rounded-xl py-3"
-              >
-                Logout
-              </button>
-            ) : (
-              <Link
-  to="/login"
-  onClick={() => setMenuOpen(false)}
->
-                <button className="w-full bg-orange-500 text-white rounded-xl py-3">
-                  Login
+            {/* Login / Register / Logout */}
+            <div className="border-t mt-5 pt-5">
+
+              {user ? (
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    handleLogout();
+                  }}
+                  className="w-full bg-red-500 hover:bg-red-600 text-white rounded-xl py-3 flex items-center justify-center gap-2"
+                >
+                  <FiLogOut />
+                  Logout
                 </button>
-              </Link>
-            )}
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-3">
+                      Login
+                    </button>
+                  </Link>
 
+                  <Link
+                    to="/register"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <button className="w-full mt-3 border border-orange-500 text-orange-500 rounded-xl py-3 hover:bg-orange-50">
+                      Register
+                    </button>
+                  </Link>
+                </>
+              )}
+
+            </div>
           </div>
-
         </div>
       )}
     </nav>
