@@ -1,9 +1,10 @@
 import { getVendors } from "../services/vendorService";
 import { useEffect, useState } from "react";
-import { FiArrowRight } from "react-icons/fi";
 import VendorCard from "./VendorCard";
+import { forwardRef } from "react";
 
-function FeaturedVendors({ search, selectedCategory }) {
+const FeaturedVendors = forwardRef(
+  ({ search, selectedCategory }, ref) => {
   const [vendors, setVendors] = useState([]);
 
   const filteredVendors = vendors.filter((vendor) => {
@@ -34,7 +35,7 @@ function FeaturedVendors({ search, selectedCategory }) {
   }, []);
 
   return (
-    <section className="py-24 bg-white">
+    <section ref={ref} className="py-24 bg-white">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -92,6 +93,6 @@ function FeaturedVendors({ search, selectedCategory }) {
 
     </section>
   );
-}
+});
 
 export default FeaturedVendors;

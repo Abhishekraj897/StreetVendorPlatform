@@ -1,6 +1,6 @@
 import { FiSearch, FiMapPin } from "react-icons/fi";
 
-function SearchBar({ search, setSearch }) {
+function SearchBar({ search, setSearch, onSearch }) {
   return (
     <section className="-mt-1 relative z-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -42,7 +42,10 @@ function SearchBar({ search, setSearch }) {
             </button>
 
             {/* Search Button */}
-            <button className="w-full md:w-auto bg-orange-500 hover:bg-orange-600 text-white font-semibold px-10 py-4 rounded-2xl transition shadow-lg">
+            <button
+              onClick={onSearch}
+              className="w-full md:w-auto bg-orange-500 hover:bg-orange-600 text-white font-semibold px-10 py-4 rounded-2xl transition shadow-lg"
+            >
               Search
             </button>
 

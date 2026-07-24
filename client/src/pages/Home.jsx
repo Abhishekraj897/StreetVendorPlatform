@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import Hero from "../components/Hero";
 import SearchBar from "../components/SearchBar";
@@ -7,6 +7,7 @@ import FeaturedVendors from "../components/FeaturedVendors";
 
 function Home() {
   const [search, setSearch] = useState("");
+  const vendorsRef = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
@@ -16,6 +17,11 @@ function Home() {
       <SearchBar
         search={search}
         setSearch={setSearch}
+        onSearch={() =>
+          vendorsRef.current?.scrollIntoView({
+            behavior: "smooth",
+          })
+        }
       />
 
       <CategorySection
@@ -24,6 +30,12 @@ function Home() {
       />
 
       <FeaturedVendors
+        search={search}
+        selectedCategory={selectedCategory}
+      />
+
+      <FeaturedVendors
+        ref={vendorsRef}
         search={search}
         selectedCategory={selectedCategory}
       />
