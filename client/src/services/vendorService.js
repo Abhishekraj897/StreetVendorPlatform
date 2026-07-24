@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/vendors";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/vendors`;
 
 // Get all vendors
 export const getVendors = async () => {
@@ -12,7 +12,7 @@ export const getVendorById = async (id) => {
   return response.json();
 };
 
-// Create vendor
+// Create Vendor
 export const createVendor = async (vendor) => {
   const token = localStorage.getItem("token");
 
@@ -28,7 +28,7 @@ export const createVendor = async (vendor) => {
   return await response.json();
 };
 
-// Update vendor
+// Update Vendor
 export const updateVendor = async (id, vendor) => {
   const token = localStorage.getItem("token");
 
@@ -44,7 +44,7 @@ export const updateVendor = async (id, vendor) => {
   return await response.json();
 };
 
-// Delete vendor
+// Delete Vendor
 export const deleteVendor = async (id) => {
   const token = localStorage.getItem("token");
 
@@ -58,11 +58,9 @@ export const deleteVendor = async (id) => {
   return await response.json();
 };
 
+// Get My Vendors
 export const getMyVendors = async (ownerId) => {
-  const response = await fetch(
-    `http://localhost:5000/api/vendors/owner/${ownerId}`
-  );
+  const response = await fetch(`${API_URL}/owner/${ownerId}`);
 
   return await response.json();
 };
-

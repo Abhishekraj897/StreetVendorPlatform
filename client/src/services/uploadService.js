@@ -3,10 +3,13 @@ export const uploadImage = async (imageFile) => {
 
   formData.append("image", imageFile);
 
-  const response = await fetch("http://localhost:5000/api/upload", {
-    method: "POST",
-    body: formData,
-  });
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/upload`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
 
   return await response.json();
 };

@@ -50,8 +50,13 @@ function Register() {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Something went wrong.");
-    }
+    console.log(error);
+    console.log(error.response?.data);
+
+    toast.error(
+        error.response?.data?.message || "Something went wrong."
+    );
+}
 
     setLoading(false);
   };

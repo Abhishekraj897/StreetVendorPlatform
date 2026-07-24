@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/ai";
+const API = `${import.meta.env.VITE_API_URL}/api/ai`;
 
 export const askAI = async (question) => {
   const token = localStorage.getItem("token");

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/favorites";
+const API = `${import.meta.env.VITE_API_URL}/api/favorites`;
 
 const getToken = () => localStorage.getItem("token");
 
@@ -32,14 +32,11 @@ export const addFavorite = async (vendorId) => {
 
 // Remove favorite
 export const removeFavorite = async (vendorId) => {
-  const res = await axios.delete(
-    `${API}/${vendorId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-    }
-  );
+  const res = await axios.delete(`${API}/${vendorId}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
 
   return res.data;
 };

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/auth`;
 
 // Register User
 export const registerUser = async (userData) => {
@@ -27,31 +27,25 @@ export const loginUser = async (userData) => {
 };
 
 export const forgotPassword = async (email) => {
-  const response = await fetch(
-    "http://localhost:5000/api/auth/forgot-password",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    }
-  );
+  const response = await fetch(`${API_URL}/forgot-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
 
   return await response.json();
 };
 
 export const resetPassword = async (token, password) => {
-  const response = await fetch(
-    `http://localhost:5000/api/auth/reset-password/${token}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ password }),
-    }
-  );
+  const response = await fetch(`${API_URL}/reset-password/${token}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ password }),
+  });
 
   return await response.json();
 };
