@@ -28,7 +28,7 @@ function Home() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      
+
       <FeaturedVendors
         ref={vendorsRef}
         search={search}

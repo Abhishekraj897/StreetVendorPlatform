@@ -1,6 +1,44 @@
 import { FiSearch, FiMapPin } from "react-icons/fi";
 
 function SearchBar({ search, setSearch, onSearch }) {
+  const handleLocation = async () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          );
+
+          const data = await response.json();
+
+          const city =
+            data.address.city ||
+            data.address.town ||
+            data.address.village ||
+            data.address.state;
+
+          setSearch(city);
+
+          if (onSearch) {
+            setTimeout(() => onSearch(), 100);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Unable to detect your location.");
+        }
+      },
+      () => {
+        alert("Location permission denied.");
+      }
+    );
+  };
   return (
     <section className="-mt-1 relative z-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -36,8 +74,10 @@ function SearchBar({ search, setSearch, onSearch }) {
             </div>
 
             {/* Location Button */}
-            <button className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl border border-gray-200 hover:border-orange-500 hover:text-orange-500 transition">
-              <FiMapPin size={20} />
+            <button
+              onClick={handleLocation}
+              className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl border border-gray-200 hover:border-orange-500 hover:text-orange-500 transition"
+            >
               Location
             </button>
 
