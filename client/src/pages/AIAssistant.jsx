@@ -29,6 +29,13 @@ function AIAssistant() {
     const handleAsk = async () => {
         if (!question.trim()) return;
 
+        const token = localStorage.getItem("token");
+
+if (!token) {
+    toast.warning("🔒 Please login to use the AI Assistant.");
+    return;
+}
+
         const userQuestion = question;
 
         setMessages((prev) => [
@@ -55,24 +62,30 @@ function AIAssistant() {
                 },
             ]);
         } catch (error) {
-            console.error(error);
-            toast.error("AI is currently unavailable. Please try again.");
+    console.error(error);
 
-            const errorData = {
-                vendorName: "Error",
-                reason: "Something went wrong.",
-            };
+    if (error.response?.status === 401) {
+        toast.warning("🔒 Please login to use the AI Assistant.");
+        return;
+    }
 
-            setAnswer(errorData);
+    toast.error("AI is currently unavailable. Please try again.");
 
-            setMessages((prev) => [
-                ...prev,
-                {
-                    type: "ai",
-                    data: errorData,
-                },
-            ]);
-        }
+    const errorData = {
+        vendorName: "Error",
+        reason: "Something went wrong.",
+    };
+
+    setAnswer(errorData);
+
+    setMessages((prev) => [
+        ...prev,
+        {
+            type: "ai",
+            data: errorData,
+        },
+    ]);
+}
 
         setLoading(false);
     };
