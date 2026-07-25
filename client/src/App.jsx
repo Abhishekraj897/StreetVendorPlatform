@@ -29,7 +29,7 @@ const shouldHideFooter =
   hideFooter.includes(location.pathname) ||
   location.pathname.startsWith("/reset-password");
   return (
-  <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-white transition-colors duration-300">
+  <div className="min-h-screen bg-white text-gray-900">
     <ScrollToTop />
     <Navbar />
 
