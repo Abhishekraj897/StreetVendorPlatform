@@ -8,18 +8,17 @@ export const ThemeProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+  document.documentElement.classList.toggle("dark", darkMode);
+  localStorage.setItem("theme", darkMode ? "dark" : "light");
+}, [darkMode]);
 
   const toggleTheme = () => {
-    setDarkMode((prev) => !prev);
-  };
+  setDarkMode((prev) => {
+    console.log("Previous:", prev);
+    console.log("Next:", !prev);
+    return !prev;
+  });
+};
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
