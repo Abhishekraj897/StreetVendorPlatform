@@ -90,10 +90,12 @@ if (!token) {
         setLoading(false);
     };
     useEffect(() => {
-        chatEndRef.current?.scrollIntoView({
-            behavior: "smooth",
-        });
-    }, [messages, loading]);
+  if (messages.length > 0 || loading) {
+    chatEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+}, [messages, loading]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
