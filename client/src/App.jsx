@@ -29,11 +29,11 @@ const shouldHideFooter =
   hideFooter.includes(location.pathname) ||
   location.pathname.startsWith("/reset-password");
   return (
-    <>
-     <ScrollToTop />
-      <Navbar />
+  <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-white transition-colors duration-300">
+    <ScrollToTop />
+    <Navbar />
 
-      <Routes>
+    <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/add-vendor"
@@ -79,15 +79,15 @@ const shouldHideFooter =
 
       </Routes>
 
-        {!shouldHideFooter && <Footer />}
+    {!shouldHideFooter && <Footer />}
 
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        theme="colored"
-      />
-    </>
-  );
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      theme="colored"
+    />
+  </div>
+);
 }
 
 export default App;
