@@ -11,9 +11,12 @@ import {
   FiX,
 } from "react-icons/fi";
 import { FaRobot } from "react-icons/fa";
+import { FiMoon, FiSun } from "react-icons/fi";
+import { useTheme } from "../context/ThemeContext";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { darkMode, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -25,7 +28,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-100">
+    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-lg border-b border-gray-100 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
@@ -42,14 +45,14 @@ function Navbar() {
               StreetVendor
             </h1>
 
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               Discover Local Food
             </p>
           </div>
         </Link>
 
         {/* Navigation */}
-        <ul className="hidden lg:flex items-center gap-8 text-gray-700 font-medium">
+        <ul className="hidden lg:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
 
           <li>
             <NavLink
@@ -143,24 +146,27 @@ function Navbar() {
 
         {/* User Section */}
         <div className="hidden lg:flex items-center gap-4">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition text-gray-700 dark:text-white"
+          >
+            {darkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
+          </button>
+
           {user ? (
             <>
-              <div className="flex items-center gap-3 bg-orange-50 px-4 py-2 rounded-xl">
-
+              <div className="flex items-center gap-3 bg-orange-50 dark:bg-gray-800 px-4 py-2 rounded-xl">
                 <div className="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center">
                   <FiUser />
                 </div>
 
                 <div>
-                  <p className="font-semibold">
-                    {user.name}
-                  </p>
-
-                  <p className="text-xs text-gray-500">
+                  <p className="font-semibold dark:text-white">{user.name}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     Welcome Back
                   </p>
                 </div>
-
               </div>
 
               <button
@@ -187,7 +193,7 @@ function Navbar() {
         </button>
       </div>
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t shadow-xl">
+        <div className="lg:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700 shadow-xl">
           <div className="flex flex-col p-6">
 
             {/* User Info */}
@@ -198,7 +204,7 @@ function Navbar() {
                 </div>
 
                 <div>
-                  <p className="font-semibold text-gray-800">{user.name}</p>
+                  <p className="font-semibold text-gray-800 dark:text-white">{user.name}</p>
                   <p className="text-sm text-gray-500">
                     Welcome Back 👋
                   </p>
@@ -296,42 +302,43 @@ function Navbar() {
               AI Assistant
             </NavLink>
 
-            {/* Login / Register / Logout */}
             <div className="border-t mt-5 pt-5">
 
-              {user ? (
-                <button
-                  onClick={() => {
-                    setMenuOpen(false);
-                    handleLogout();
-                  }}
-                  className="w-full bg-red-500 hover:bg-red-600 text-white rounded-xl py-3 flex items-center justify-center gap-2"
-                >
-                  <FiLogOut />
-                  Logout
-                </button>
-              ) : (
-                <>
-                  <Link
-                    to="/login"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-3">
-                      Login
-                    </button>
-                  </Link>
+  <button
+    onClick={toggleTheme}
+    className="w-full flex items-center justify-center gap-2 border rounded-xl py-3 mb-4 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+  >
+    {darkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
+    {darkMode ? "Light Mode" : "Dark Mode"}
+  </button>
 
-                  <Link
-                    to="/register"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <button className="w-full mt-3 border border-orange-500 text-orange-500 rounded-xl py-3 hover:bg-orange-50">
-                      Register
-                    </button>
-                  </Link>
-                </>
-              )}
+  {user ? (
+    <button
+      onClick={() => {
+        setMenuOpen(false);
+        handleLogout();
+      }}
+      className="w-full bg-red-500 hover:bg-red-600 text-white rounded-xl py-3 flex items-center justify-center gap-2"
+    >
+      <FiLogOut />
+      Logout
+    </button>
+  ) : (
+    <>
+      <Link to="/login" onClick={() => setMenuOpen(false)}>
+        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-3">
+          Login
+        </button>
+      </Link>
 
+      <Link to="/register" onClick={() => setMenuOpen(false)}>
+        <button className="w-full mt-3 border border-orange-500 text-orange-500 rounded-xl py-3 hover:bg-orange-50">
+          Register
+        </button>
+      </Link>
+    </>
+  )}
+</div>
             </div>
           </div>
         </div>
