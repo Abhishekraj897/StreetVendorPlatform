@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Favorites from "./pages/Favorites";
 import Dashboard from "./pages/Dashboard";
 import AIAssistant from "./pages/AIAssistant";
+import ScrollToTop from "./components/ScrollToTop";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
@@ -29,6 +30,7 @@ const shouldHideFooter =
   location.pathname.startsWith("/reset-password");
   return (
     <>
+     <ScrollToTop />
       <Navbar />
 
       <Routes>
