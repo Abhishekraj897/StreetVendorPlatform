@@ -196,7 +196,6 @@ function Navbar() {
         <div className="lg:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700 shadow-xl">
           <div className="flex flex-col p-6">
 
-            {/* User Info */}
             {user && (
               <div className="flex items-center gap-3 border-b pb-5 mb-5">
                 <div className="w-11 h-11 rounded-full bg-orange-500 text-white flex items-center justify-center text-lg">
@@ -204,142 +203,76 @@ function Navbar() {
                 </div>
 
                 <div>
-                  <p className="font-semibold text-gray-800 dark:text-white">{user.name}</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="font-semibold text-gray-800 dark:text-white">
+                    {user.name}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     Welcome Back 👋
                   </p>
                 </div>
               </div>
             )}
 
-            {/* Home */}
-            <NavLink
-              to="/"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
-                  ? "bg-orange-100 text-orange-500 font-semibold"
-                  : "hover:bg-orange-50"
-                }`
-              }
-            >
-              <FiHome />
+            <NavLink to="/" onClick={() => setMenuOpen(false)} className="px-4 py-3 hover:bg-orange-50 rounded-xl">
               Home
             </NavLink>
 
-            {/* Add Vendor */}
-            <NavLink
-              to="/add-vendor"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
-                  ? "bg-orange-100 text-orange-500 font-semibold"
-                  : "hover:bg-orange-50"
-                }`
-              }
-            >
-              <FiPlusCircle />
+            <NavLink to="/add-vendor" onClick={() => setMenuOpen(false)} className="px-4 py-3 hover:bg-orange-50 rounded-xl">
               Add Vendor
             </NavLink>
 
-            {/* My Vendors */}
-            <NavLink
-              to="/my-vendors"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
-                  ? "bg-orange-100 text-orange-500 font-semibold"
-                  : "hover:bg-orange-50"
-                }`
-              }
-            >
-              <FiGrid />
+            <NavLink to="/my-vendors" onClick={() => setMenuOpen(false)} className="px-4 py-3 hover:bg-orange-50 rounded-xl">
               My Vendors
             </NavLink>
 
-            {/* Favorites */}
-            <NavLink
-              to="/favorites"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
-                  ? "bg-orange-100 text-orange-500 font-semibold"
-                  : "hover:bg-orange-50"
-                }`
-              }
-            >
-              <FiHeart />
+            <NavLink to="/favorites" onClick={() => setMenuOpen(false)} className="px-4 py-3 hover:bg-orange-50 rounded-xl">
               Favorites
             </NavLink>
 
-            {/* Dashboard */}
-            <NavLink
-              to="/dashboard"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
-                  ? "bg-orange-100 text-orange-500 font-semibold"
-                  : "hover:bg-orange-50"
-                }`
-              }
-            >
-              <FiGrid />
+            <NavLink to="/dashboard" onClick={() => setMenuOpen(false)} className="px-4 py-3 hover:bg-orange-50 rounded-xl">
               Dashboard
             </NavLink>
 
-            {/* AI Assistant */}
-            <NavLink
-              to="/ai-assistant"
-              onClick={() => setMenuOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl transition ${isActive
-                  ? "bg-orange-100 text-orange-500 font-semibold"
-                  : "hover:bg-orange-50"
-                }`
-              }
-            >
-              <FaRobot />
+            <NavLink to="/ai-assistant" onClick={() => setMenuOpen(false)} className="px-4 py-3 hover:bg-orange-50 rounded-xl">
               AI Assistant
             </NavLink>
 
             <div className="border-t mt-5 pt-5">
+              <button
+                onClick={toggleTheme}
+                className="w-full flex items-center justify-center gap-2 border rounded-xl py-3 mb-4 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
+              >
+                {darkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
+                {darkMode ? "Light Mode" : "Dark Mode"}
+              </button>
 
-  <button
-    onClick={toggleTheme}
-    className="w-full flex items-center justify-center gap-2 border rounded-xl py-3 mb-4 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
-  >
-    {darkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
-    {darkMode ? "Light Mode" : "Dark Mode"}
-  </button>
+              {user ? (
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    handleLogout();
+                  }}
+                  className="w-full bg-red-500 hover:bg-red-600 text-white rounded-xl py-3"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setMenuOpen(false)}>
+                    <button className="w-full bg-orange-500 text-white rounded-xl py-3">
+                      Login
+                    </button>
+                  </Link>
 
-  {user ? (
-    <button
-      onClick={() => {
-        setMenuOpen(false);
-        handleLogout();
-      }}
-      className="w-full bg-red-500 hover:bg-red-600 text-white rounded-xl py-3 flex items-center justify-center gap-2"
-    >
-      <FiLogOut />
-      Logout
-    </button>
-  ) : (
-    <>
-      <Link to="/login" onClick={() => setMenuOpen(false)}>
-        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-3">
-          Login
-        </button>
-      </Link>
-
-      <Link to="/register" onClick={() => setMenuOpen(false)}>
-        <button className="w-full mt-3 border border-orange-500 text-orange-500 rounded-xl py-3 hover:bg-orange-50">
-          Register
-        </button>
-      </Link>
-    </>
-  )}
-</div>
+                  <Link to="/register" onClick={() => setMenuOpen(false)}>
+                    <button className="w-full mt-3 border border-orange-500 text-orange-500 rounded-xl py-3">
+                      Register
+                    </button>
+                  </Link>
+                </>
+              )}
             </div>
+
           </div>
         </div>
       )}
