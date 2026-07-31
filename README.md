@@ -1,27 +1,27 @@
-# 🍜 StreetVendor – AI Powered Local Street Vendor Platform
+# 🍜 StreetVendor – AI Powered Street Food Discovery Platform
 
-StreetVendor is a full-stack MERN web application that helps users discover local street food vendors, explore nearby food stalls, manage favorites, and interact with an AI assistant for food recommendations.
+Discover the best local street food vendors with an AI-powered recommendation system. Users can search vendors, save favorites, manage their own vendors, and get smart food recommendations.
+
+---
 
 ## 🚀 Live Demo
 
-Frontend: https://your-vercel-link.vercel.app
-
-Backend: https://your-render-link.onrender.com
+🌐 Frontend: https://street-vendor-platform.vercel.app/
 
 ---
 
 ## ✨ Features
 
-- 🔐 JWT Authentication
-- 👤 User Registration & Login
-- 🍜 Add Street Vendors
-- ✏️ Edit & Delete Vendors
-- ❤️ Favorite Vendors
-- 📊 Personal Dashboard
-- 🤖 AI Food Assistant
-- 📍 Google Maps Integration
-- ☁️ Cloudinary Image Upload
-- 📱 Fully Responsive Design
+- 🔍 Search vendors by name, category, or location
+- 🤖 AI-powered food recommendation assistant
+- ❤️ Add and remove favorite vendors
+- 👤 User Authentication (JWT)
+- ➕ Add your own street food vendors
+- ✏️ Edit and delete your vendors
+- 📍 Google Maps location support
+- ☁️ Cloudinary image upload
+- 📱 Fully responsive UI
+- 🚀 Fast deployment with Vercel & Render
 
 ---
 
@@ -31,8 +31,8 @@ Backend: https://your-render-link.onrender.com
 - React.js
 - React Router
 - Tailwind CSS
-- Axios
 - React Icons
+- React Toastify
 
 ### Backend
 - Node.js
@@ -41,76 +41,155 @@ Backend: https://your-render-link.onrender.com
 - Mongoose
 - JWT Authentication
 - Cloudinary
-- Google Maps API
+
+### Deployment
+- Vercel
+- Render
 
 ---
 
 ## 📸 Screenshots
 
-### Home Page
+### 🏠 Home Page
 
-(Add Screenshot)
+![Home Page](./screenshots/home.png)
 
-### Dashboard
+---
 
-(Add Screenshot)
+### 🤖 AI Assistant
 
-### AI Assistant
+![AI Assistant](./screenshots/ai-assistant.png)
 
-(Add Screenshot)
+---
 
-### Vendor Details
+### 🍜 Vendor Details
 
-(Add Screenshot)
+![Vendor Details](./screenshots/my-vendor.png)
+
+---
+
+### ❤️ Favorites
+
+![Favorites](./screenshots/favorites.png)
+
+---
+
+### 📊 Dashboard
+
+![Dashboard](./screenshots/dashboard.png)
+
+---
+
+### ➕ Add Vendor
+
+![Add Vendor](./screenshots/add-vendor.png)
+
+---
+
+## 📂 Folder Structure
+
+```text
+StreetVendorPlatform
+│
+├── client
+│   ├── src
+│   ├── public
+│   └── package.json
+│
+├── server
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── uploads
+│   └── server.js
+│
+├── screenshots
+│   ├── home.png
+│   ├── search.png
+│   ├── ai-assistant.png
+│   ├── vendor-details.png
+│   ├── favorites.png
+│   ├── dashboard.png
+│   └── add-vendor.png
+│
+└── README.md
+```
 
 ---
 
 ## ⚙️ Installation
 
-Clone the repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/streetvendor.git
+git clone https://github.com/Abhishekraj897/StreetVendorPlatform.git
 ```
 
-Install frontend
+### Client
 
 ```bash
+cd client
 npm install
-```
-
-Install backend
-
-```bash
-npm install
-```
-
-Create a `.env` file and add:
-
-```
-MONGO_URI=
-JWT_SECRET=
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-GOOGLE_MAPS_API_KEY=
-OPENAI_API_KEY=
-```
-
-Run frontend
-
-```bash
 npm run dev
 ```
 
-Run backend
+### Server
 
 ```bash
-npm run server
+cd server
+npm install
+npm start
 ```
+
+---
+
+## 🔐 Environment Variables
+
+### Client (.env)
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+### Server (.env)
+
+```env
+PORT=5000
+
+MONGO_URI=YOUR_MONGODB_URI
+
+JWT_SECRET=YOUR_SECRET
+
+CLOUDINARY_CLOUD_NAME=YOUR_CLOUD_NAME
+CLOUDINARY_API_KEY=YOUR_API_KEY
+CLOUDINARY_API_SECRET=YOUR_API_SECRET
+```
+
+---
+
+## 📌 Future Improvements
+
+- ⭐ Vendor Reviews & Ratings
+- 📍 Nearby Vendor Detection
+- 🔔 Notifications
+- 🛒 Online Ordering
+- 💳 Payment Gateway
+- 📈 Vendor Analytics
+- 🌙 Dark Mode
 
 ---
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Abhishek Raj**
+
+GitHub: https://github.com/Abhishekraj897
+
+LinkedIn: *(Add your LinkedIn profile here)*
+
+---
+
+## ⭐ Support
+
+If you like this project, please give it a ⭐ on GitHub!
